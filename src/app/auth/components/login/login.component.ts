@@ -1,8 +1,3 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { getDeepFromObject } from '../../helpers';
@@ -57,8 +52,6 @@ export class LoginComponent {
           }
 
       }
-
-      console.log(result.getRedirect());
 
       const redirect = result.getRedirect();
       if (redirect) {

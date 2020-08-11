@@ -49,7 +49,7 @@ export const routes: Routes = [
     path: 'auth',
     loadChildren: './auth/auth.module#AuthModule',
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ];
 

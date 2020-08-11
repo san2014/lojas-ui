@@ -1,24 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { SharedModule } from './../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
-import { NbAuthModule, NbPasswordAuthStrategy, NbPasswordStrategyModule } from '@nebular/auth';
-import { 
+
+import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
+import {
   NbAlertModule,
   NbButtonModule,
   NbCheckboxModule,
   NbInputModule,
-  NbIconModule
+  NbIconModule,
 } from '@nebular/theme';
 import { LoginComponent } from './components/login/login.component';
+import { RegistrarComponent } from './components/registrar/registrar.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     NbAlertModule,
     NbInputModule,
@@ -26,6 +30,7 @@ import { LoginComponent } from './components/login/login.component';
     NbCheckboxModule,
     NbIconModule,
     AuthRoutingModule,
+    SharedModule,
 
     NbAuthModule.forRoot({
       strategies: [
@@ -37,6 +42,15 @@ import { LoginComponent } from './components/login/login.component';
             endpoint: '/v1/usuarios/login',
             defaultErrors: ['Credenciais invalidas, tente novamente.'],
             defaultMessages: ['Logado com sucesso.'],
+          },
+          logout: {
+            endpoint: '/v1/usuarios/logout',
+          },
+          requestPass: {
+            endpoint: '/v1/usuarios/pedirSenha',
+          },
+          resetPass: {
+            endpoint: '/v1/usuarios/resetarSenha',
           },
         }),
       ],
@@ -53,6 +67,7 @@ import { LoginComponent } from './components/login/login.component';
   ],
   declarations: [
     LoginComponent,
+    RegistrarComponent,
   ],
 })
 export class AuthModule {

@@ -1,0 +1,59 @@
+<h1 id="title" class="title">Cadastro</h1>
+<p class="sub-title">Informe os dados</p>
+
+<nb-alert *ngIf="showMessages.error && errors?.length" outline="danger" role="alert">
+  <p class="alert-title"><b>Atenção!</b></p>
+  <ul class="alert-message-list">
+    <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+  </ul>
+</nb-alert>
+
+<nb-alert *ngIf="showMessages.success && messages?.length" outline="success" role="alert">
+  <p class="alert-title"><b>Sucesso!</b></p>
+  <ul class="alert-message-list">
+    <li *ngFor="let message of messages" class="alert-message">
+      {{ message }}
+    </li>
+  </ul>
+</nb-alert>
+
+<form [formGroup]="formulario" aria-labelledby="title">
+  <div class="form-control-group">
+    <ngx-input label="Nome" [control]="formulario.get('nome')">
+      <input nbInput fullWidth id="input-nome" [status]="classeCss('nome')" placeholder="nome" autofocus
+        formControlName="nome" />
+    </ngx-input>
+  </div>
+
+  <div class="form-control-group">
+    <ngx-input label="Login" [control]="formulario.get('login')">
+      <input nbInput fullWidth id="input-login" [status]="classeCss('login')" placeholder="login" autofocus
+        formControlName="login" />
+    </ngx-input>
+  </div>
+
+  <div class="form-control-group">
+    <ngx-input label="Email" [control]="formulario.get('email')">
+      <input nbInput fullWidth id="input-email" [status]="classeCss('email')" placeholder="email"
+        formControlName="email" />
+    </ngx-input>
+  </div>
+
+  <div class="form-control-group">
+    <ngx-input label="Senha" [control]="formulario.get('senha')">
+      <input nbInput fullWidth type="password" id="input-senha" [status]="classeCss('senha')" placeholder="senha"
+        formControlName="senha" />
+    </ngx-input>
+  </div>
+
+  <div class="form-control-group">
+    <ngx-input label="Confirme a Senha" [control]="formulario.get('confirmarSenha')">
+      <input nbInput fullWidth type="password" id="input-confirmarSenha" [status]="classeCss('confirmarSenha')"
+        placeholder="confirmar senha" formControlName="confirmarSenha" />
+    </ngx-input>
+  </div>
+
+  <button nbButton fullWidth status="primary" size="large" (click)="inserir()" [disabled]="!formulario.valid">
+    Cadastrar
+  </button>
+</form>
